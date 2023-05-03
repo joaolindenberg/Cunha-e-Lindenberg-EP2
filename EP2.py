@@ -60,14 +60,14 @@ def afundados(infos, tabuleiro):
                 afundados += 1
     return afundados
 
-
-def posicao_valida(infos, linha, coluna, orientacao, tamanho):
-    posicoes_navios = define_posicoes(linha, coluna, orientacao, tamanho)
-    valido = True
-    for tipo, coordenadas in infos.items():
-        for posicao in coordenadas:
-            if linha < 0 or linha > 9 or coluna < 0 or coluna > 9:
-                valido = False
-            if posicao == [linha, coluna]:
-                valido = False
-    return valido
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    posicoes_navio = define_posicoes(linha, coluna, orientacao, tamanho)
+    for posicao in posicoes_navio:
+        linha, coluna = posicao
+        if linha < 0 or coluna < 0 or linha > 9 or coluna > 9:
+            return False
+        for navio in frota.values():
+            for pos in navio:
+                if posicao in pos:
+                    return False
+    return True
