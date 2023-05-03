@@ -50,7 +50,7 @@ def posiciona_frota(infos):
 
 def afundados(infos, tabuleiro):
     afundados = 0
-    for tipo, coordenadas in infos.items():
+    for coordenadas in infos.values():
         for posicao in coordenadas:
             afundado = True
             for x, y in posicao:
