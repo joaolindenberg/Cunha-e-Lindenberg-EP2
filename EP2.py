@@ -45,3 +45,14 @@ def posiciona_frota(infos):
             for x, y in posicao:
                 tabuleiro[x][y] = 1
     return tabuleiro
+
+
+
+def afundados(infos, tabuleiro):
+    afundados = 0
+    for tipo, coordenadas in infos.items():
+        for posicao in coordenadas:
+            for x, y in posicao:
+                if tabuleiro[x][y] == 'X':
+                    afundados += 1
+    return afundados
