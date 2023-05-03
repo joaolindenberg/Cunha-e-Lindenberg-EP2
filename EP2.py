@@ -52,7 +52,10 @@ def afundados(infos, tabuleiro):
     afundados = 0
     for tipo, coordenadas in infos.items():
         for posicao in coordenadas:
+            afundado = True
             for x, y in posicao:
-                if tabuleiro[x][y] == 'X':
-                    afundados += 1
+                if tabuleiro[x][y] != 'X':
+                    afundado = False
+            if afundado:
+                afundados += 1
     return afundados
