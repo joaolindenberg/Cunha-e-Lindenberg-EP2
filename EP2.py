@@ -40,7 +40,7 @@ def posiciona_frota(infos):
       [0,0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0,0],
     ]
-    for tipo, coordenadas in infos.items():
+    for coordenadas in infos.values():
         for posicao in coordenadas:
             for x, y in posicao:
                 tabuleiro[x][y] = 1
