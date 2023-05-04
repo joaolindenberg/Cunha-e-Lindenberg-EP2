@@ -71,3 +71,24 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
                 if posicao in pos:
                     return False
     return True
+
+# Apêndice
+tipos = ["porta-aviões","navio-tanque","contratorpedeiro","submarino"]
+quant_navio = {"porta-aviões":1,"navio-tanque":2,"contratorpedeiro":3,"submarino":4}
+d = {1:'vertical', 2:'horizontal'}
+tamanho = 4
+
+#Programa
+for i in tipos:
+    for j in range(0,quant_navio[i]):
+        linha = int(input('Linha: '))
+        coluna = int(input('coluna: '))
+        
+        if i != 'submarino':
+            vertical_horizontal = int(input('[1] Vertical [2] Horizontal'))
+            vertical_horizontal = d[vertical_horizontal]
+
+        posicao = posicao_valida()
+    tamanho -= 1
+
+
