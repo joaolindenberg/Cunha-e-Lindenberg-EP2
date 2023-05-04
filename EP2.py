@@ -89,19 +89,28 @@ tabuleiro = [
   [0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0],
 ]
-
+frota = {
+    "porta-aviões":[],
+    "navio-tanque":[],
+    "contratorpedeiro":[],
+    "submarino": [],
+}
 
 #Programa
 for i in tipos:
-    for j in range(0,quant_navio[i]):
-        linha = int(input('Linha: '))
-        coluna = int(input('coluna: '))
-        
-        if i != 'submarino':
-            vertical_horizontal = int(input('[1] Vertical [2] Horizontal'))
-            vertical_horizontal = d[vertical_horizontal]
-        
-        posicao = posicao_valida()
+        valido = False
+        while valido == False:
+            for j in range(0,quant_navio[i]):
+                linha = int(input('Linha: '))
+                coluna = int(input('coluna: '))
+                
+                if i != 'submarino':
+                    vertical_horizontal = int(input('[1] Vertical [2] Horizontal'))
+                    vertical_horizontal = d[vertical_horizontal]
+            valido = posicao_valida(frota, linha, coluna, vertical_horizontal)
+            if valido == False:
+                print('Esta posição não está válida')
+        frota = preenche_frota(frota, coluna, vertical_horizontal, tamanho)
     tamanho -= 1
 
 
