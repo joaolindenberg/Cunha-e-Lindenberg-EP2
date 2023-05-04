@@ -162,7 +162,7 @@ while jogando:
         jogada = [linha,coluna]
 
         if jogada in jogadas_anteriores:
-            print('A posição linha LINHA e coluna COLUNA já foi informada anteriormente!')
+            print('A posição linha {0} e coluna {1} já foi informada anteriormente!'.format(linha, coluna))
         else:
             Check_Jogadas = False
     
