@@ -1,3 +1,5 @@
+import random as rd
+
 def define_posicoes(linha,coluna,orientacao,tamanho):
     posicao = []
     if orientacao == 'vertical':
@@ -137,14 +139,16 @@ tabuleiro_jogador = posiciona_frota(frota)
 
 jogando = True
 
-jogadas_anteriores = []
+jogadas_anteriores = jogadas_anteriores_oponente = []
 
 while jogando:
-    linha = coluna = jogada = ''
-    Check_Jogadas = True
     print(monta_tabuleiros(tabuleiro_jogador,tabuleiro_oponente))
 
+    # Jogador joga
+    Check_Jogadas = True
+
     while Check_Jogadas:
+        linha = coluna = ''
         while linha not in [0,1,2,3,4,5,6,7,8,9]:
             linha = int(input('Jogador, qual linha deseja atacar? '))
             if linha not in [0,1,2,3,4,5,6,7,8,9]:
@@ -155,19 +159,48 @@ while jogando:
             if coluna not in [0,1,2,3,4,5,6,7,8,9]:
                 print('Coluna inválida!')
         
-            jogada = [linha,coluna]
+        jogada = [linha,coluna]
 
-            if jogada in jogadas_anteriores:
-                print('A posição linha LINHA e coluna COLUNA já foi informada anteriormente!')
-            else:
-                Check_Jogadas = False
+        if jogada in jogadas_anteriores:
+            print('A posição linha LINHA e coluna COLUNA já foi informada anteriormente!')
+        else:
+            Check_Jogadas = False
     
     jogadas_anteriores.append(jogada)
 
     tabuleiro_oponente = faz_jogada(tabuleiro_oponente,linha, coluna)
 
+    # Oponente Joga
+    linha = coluna = jogada = ''
+    Check_Jogadas = True
+
+    while Check_Jogadas:
+        while linha not in [0,1,2,3,4,5,6,7,8,9]:
+            linha = rd.randint(0,9)
+        
+        while coluna not in [0,1,2,3,4,5,6,7,8,9]:
+            coluna = rd.randint(0,9)
+        
+        jogada_oponente = [linha,coluna]
+
+        if jogada_oponente not in jogadas_anteriores_oponente:
+            Check_Jogadas = False
+
+    jogadas_anteriores_oponente.append(jogada_oponente)
+
+    tabuleiro_jogador = faz_jogada(tabuleiro_jogador,linha, coluna)
+
+    # Verifica quantos navios foram afundados
     afund_oponente = afundados(frota_oponente,tabuleiro_oponente)
 
+    afund_jogador = afundados(frota,tabuleiro_jogador)
+
+    # Verifica se alguém ganhou o jogo
     if afund_oponente == 10:
         jogando = False
         print('Parabéns! Você derrubou todos os navios do seu oponente!')
+
+    if afund_jogador == 10:
+        jogando = False
+        print('Xi! O oponente derrubou toda a sua frota =(')
+    
