@@ -1,16 +1,12 @@
 def define_posicoes(linha,coluna,orientacao,tamanho):
-    if orientacao not in ['vertical', 'horizontal']:
-        return []
-    else:
-        posicao = []
-        if orientacao == 'vertical':
-            for i in range(linha,linha+tamanho):
+    posicao = []
+    if orientacao == 'vertical':
+        for i in range(linha,linha+tamanho):
                 posicao.append([i,coluna])
-        else:
-            for i in range(coluna,coluna+tamanho):
-                posicao.append([linha,i])
+    else:
+        for i in range(coluna,coluna+tamanho):
+            posicao.append([linha,i])
     return posicao
-
 
 def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     if nome_navio not in frota:
@@ -76,7 +72,6 @@ def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     texto = ''
     texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
     texto += '_______________________________      _______________________________\n'
-
     for linha in range(len(tabuleiro_jogador)):
         jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
         oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
