@@ -77,6 +77,19 @@ tipos = ["porta-aviões","navio-tanque","contratorpedeiro","submarino"]
 quant_navio = {"porta-aviões":1,"navio-tanque":2,"contratorpedeiro":3,"submarino":4}
 d = {1:'vertical', 2:'horizontal'}
 tamanho = 4
+tabuleiro = [
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+]
+
 
 #Programa
 for i in tipos:
@@ -87,7 +100,7 @@ for i in tipos:
         if i != 'submarino':
             vertical_horizontal = int(input('[1] Vertical [2] Horizontal'))
             vertical_horizontal = d[vertical_horizontal]
-
+        
         posicao = posicao_valida()
     tamanho -= 1
 
