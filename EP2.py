@@ -72,6 +72,17 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
                     return False
     return True
 
+def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
+    texto = ''
+    texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
+    texto += '_______________________________      _______________________________\n'
+
+    for linha in range(len(tabuleiro_jogador)):
+        jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
+        oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
+        texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
+    return texto
+
 # Apêndice
 tipos = ["porta-aviões","navio-tanque","contratorpedeiro","submarino"]
 quant_navio = {"porta-aviões":1,"navio-tanque":2,"contratorpedeiro":3,"submarino":4}
@@ -103,6 +114,66 @@ for navio in tipos:
         i+=1
     tamanho -= 1
 
-print(frota)
+#Jogo
+frota_oponente = {
+    'porta-aviões': [
+        [[9, 1], [9, 2], [9, 3], [9, 4]]
+    ],
+    'navio-tanque': [
+        [[6, 0], [6, 1], [6, 2]],
+        [[4, 3], [5, 3], [6, 3]]
+    ],
+    'contratorpedeiro': [
+        [[1, 6], [1, 7]],
+        [[0, 5], [1, 5]],
+        [[3, 6], [3, 7]]
+    ],
+    'submarino': [
+        [[2, 7]],
+        [[0, 6]],
+        [[9, 7]],
+        [[7, 6]]
+    ]
+}
 
+# Tabuleiros
+tabuleiro_oponente = posiciona_frota(frota_oponente)
 
+tabuleiro_jogador = posiciona_frota(frota)
+
+jogando = True
+
+jogadas_anteriores = []
+
+while jogando:
+    linha = coluna = jogada = ''
+    Check_Jogadas = True
+    print(monta_tabuleiros(tabuleiro_jogador,tabuleiro_oponente))
+
+    while Check_Jogadas:
+        while linha not in [0,1,2,3,4,5,6,7,8,9]:
+            linha = int(input('Jogador, qual linha deseja atacar? '))
+            if linha not in [0,1,2,3,4,5,6,7,8,9]:
+                print('Linha inválida!')
+        
+        while coluna not in [0,1,2,3,4,5,6,7,8,9]:
+            coluna = int(input('Jogador, qual coluna deseja atacar? '))
+            if coluna not in [0,1,2,3,4,5,6,7,8,9]:
+                print('Coluna inválida!')
+        
+            jogada = [linha,coluna]
+
+            if jogada in jogadas_anteriores:
+                print('A posição linha LINHA e coluna COLUNA já foi informada anteriormente!')
+            else:
+                Check_Jogadas = False
+    
+    jogadas_anteriores.append(jogada)
+
+    tabuleiro_oponente = faz_jogada(tabuleiro_oponente,linha, coluna)
+
+    afund = afundados(frota_oponente,tabuleiro_oponente)
+
+    if afund == 10:
+        jogando = False
+        print('Parabéns! Você derrubou todos os navios do seu oponente!')
