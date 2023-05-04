@@ -75,7 +75,7 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
 # Apêndice
 tipos = ["porta-aviões","navio-tanque","contratorpedeiro","submarino"]
 quant_navio = {"porta-aviões":1,"navio-tanque":2,"contratorpedeiro":3,"submarino":4}
-dic_orientacoes = {1:'vertical', 2:'horizontal'}
+d = {1:'vertical', 2:'horizontal'}
 frota = {}
 tamanho = 4
 
@@ -93,7 +93,7 @@ for navio in tipos:
             
             if navio != 'submarino':
                 vertical_horizontal = int(input('[1] Vertical [2] Horizontal: '))
-                orientacao = dic_orientacoes[vertical_horizontal]
+                orientacao = d[vertical_horizontal]
         
             if posicao_valida(frota,linha,coluna,orientacao,tamanho) == True:
                 preenche_frota(frota, navio,linha,coluna,orientacao,tamanho)
