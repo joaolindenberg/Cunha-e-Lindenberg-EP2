@@ -172,8 +172,8 @@ while jogando:
 
     tabuleiro_oponente = faz_jogada(tabuleiro_oponente,linha, coluna)
 
-    afund = afundados(frota_oponente,tabuleiro_oponente)
+    afund_oponente = afundados(frota_oponente,tabuleiro_oponente)
 
-    if afund == 10:
+    if afund_oponente == 10:
         jogando = False
         print('Parabéns! Você derrubou todos os navios do seu oponente!')
