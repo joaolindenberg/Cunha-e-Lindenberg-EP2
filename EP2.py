@@ -171,10 +171,10 @@ while jogando:
     tabuleiro_oponente = faz_jogada(tabuleiro_oponente,linha, coluna)
 
     # Oponente Joga
-    linha = coluna = jogada = ''
     Check_Jogadas = True
 
     while Check_Jogadas:
+        linha = coluna = jogada = ''
         while linha not in [0,1,2,3,4,5,6,7,8,9]:
             linha = rd.randint(0,9)
         
