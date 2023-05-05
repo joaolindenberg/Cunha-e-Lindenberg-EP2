@@ -1,5 +1,4 @@
 import random as rd
-rd.seed(2)
 
 def define_posicoes(linha,coluna,orientacao,tamanho):
     posicao = []
