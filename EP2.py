@@ -1,5 +1,6 @@
 import random as rd
 rd.seed(2)
+
 def define_posicoes(linha,coluna,orientacao,tamanho):
     posicao = []
     if orientacao == 'vertical':
@@ -42,7 +43,6 @@ def posiciona_frota(infos):
             for x, y in posicao:
                 tabuleiro[x][y] = 1
     return tabuleiro
-
 
 
 def afundados(infos, tabuleiro):
@@ -137,9 +137,12 @@ tabuleiro_oponente = posiciona_frota(frota_oponente)
 
 tabuleiro_jogador = posiciona_frota(frota)
 
-jogando = True
+# Listas para Check de Jogadas
+jogadas_anteriores = []
+jogadas_anteriores_oponente = []
 
-jogadas_anteriores = jogadas_anteriores_oponente = []
+# Condição continuação de jogo
+jogando = True
 
 while jogando:
     print(monta_tabuleiros(tabuleiro_jogador,tabuleiro_oponente))
@@ -186,6 +189,8 @@ while jogando:
         if jogada_oponente not in jogadas_anteriores_oponente:
             Check_Jogadas = False
 
+    print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha,coluna))
+
     jogadas_anteriores_oponente.append(jogada_oponente)
 
     tabuleiro_jogador = faz_jogada(tabuleiro_jogador,linha, coluna)
@@ -203,4 +208,3 @@ while jogando:
     if afund_jogador == 10:
         jogando = False
         print('Xi! O oponente derrubou toda a sua frota =(')
-    
