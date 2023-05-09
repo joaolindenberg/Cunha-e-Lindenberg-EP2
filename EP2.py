@@ -206,4 +206,4 @@ while jogando:
 
     if afund_jogador == 10:
         jogando = False
-        print('Xi! O oponente derrubou toda a sua frota =(')
+        print('Xi! O oponente derrubou toda a sua frota =( ')
